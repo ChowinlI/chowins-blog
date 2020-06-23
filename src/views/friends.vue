@@ -1,0 +1,272 @@
+<template>
+  <div class="friends">
+    <section class="friends-section">
+      <h3 class="friends-title"># dalao们的TP眼位：</h3>
+      <ul class="friends-ul">
+        <li class="friends-li" v-for="(friend, index) in friends" :key="index">
+          <div class="friends-li-div">
+            <div class="friends-pf-img">
+              <img :src="friend.avatar">
+            </div>
+            <div class="vertical-line-div">
+              <div class="vertical-line"></div>
+            </div>
+            <div class="friends-info">
+              <div class="friends-info-name">
+                <a href="">{{friend.name}}</a>
+              </div>
+              <div class="friends-info-others">
+                <span>{{friend.desc}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="friends-li-div">
+            <h4 class="friends-motto">-- {{friend.tag}}</h4>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'friends',
+  data(){
+    return {
+      friends: [
+        {
+          name:'asd',
+          avatar: require('common/images/pf-photo3.jpg'),
+          desc: '全栈开发',
+          tag: '一个程序员'
+        },
+        {
+          name:'Chowin',
+          avatar: require('common/images/pf-photo2.jpg'),
+          desc: '233333333333',
+          tag: '闹着玩的'
+        },
+        {
+          name:'Chowin的小号',
+          avatar: require('common/images/pf-photo.jpg'),
+          desc: '这样的小号还有好几个',
+          tag: '闹着玩的'
+        }
+      ]
+    }
+  }
+}
+</script>
+
+<style lang="less" scoped>
+@import "~common/less/variable";
+
+.friends{
+  width: 100%;
+
+  .friends-section{
+    width: 100%;
+    padding: 4px;
+    .friends-title{
+      width: 100%;
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 2.4rem;
+      font-weight: 600;
+    }
+    .friends-ul{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+      margin-bottom: 4.2rem;
+      padding: 4px 0;
+
+      .friends-li{
+        width: 100%;
+        padding: .8rem 1.6rem;
+        border-radius: 4px;
+        margin-top: 1.6rem;
+        color: #eeeeee;
+
+        &:nth-child(3n+1){
+          background: rgba(140,131,131,.6);
+        }
+
+        &:nth-child(3n+2){
+          background: rgba(132,59,59,.6);
+        }
+
+        &:nth-child(3n+3){
+          background: rgba(114,53,134,.6);
+        }
+
+        &:first-child{
+          margin-top: 0;
+        }
+
+        .friends-li-div {
+          width: 100%;
+          display: flex;
+          align-items: center;
+
+          .friends-pf-img {
+            width: 6.8rem;
+            height: 6.8rem;
+            border-radius: 50%;
+            border: 3px solid #e7e7e7;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all .5s ease-in-out;
+            -webkit-transition: all ease-in-out .5s;
+            -moz-transition: all ease-in-out .5s;
+            -ms-transition: all ease-in-out .5s;
+
+            &:hover{
+              border-color: @primary-color;
+              transform: rotate(360deg);
+              -webkit-transform: rotate(360deg);
+              -moz-transform: rotate(360deg);
+              -o-transform: rotate(360deg);
+              -ms-transform: rotate(360deg)
+            }
+
+            img {
+              display: block;
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          .vertical-line-div {
+            position: relative;
+            width: 3px;
+            height: 7rem;
+            text-align: center;
+            margin: 0 .8rem 0 1.6rem;
+
+            .vertical-line {
+              display: inline-block;
+              height: 4rem;
+              margin-top: 1.5rem;
+              width: 1px;
+              background-color: #DADADA;
+              transition: all .2s ease;
+              -webkit-transition: all ease .2s;
+              -moz-transition: all ease .2s;
+              -ms-transition: all ease .2s;
+            }
+          }
+
+          .friends-info{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            .friends-info-name{
+              display: inline-block;
+              font-size: 2rem;
+              font-weight: 400;
+              transition: all .5s ease-in-out;
+              -webkit-transition: all ease-in-out .5s;
+              -moz-transition: all ease-in-out .5s;
+              -ms-transition: all ease-in-out .5s;
+
+              &:hover{
+                color: #ffb1bd;
+              }
+            }
+
+            .friends-info-others{
+              span{
+                font-size: 1.4rem;
+                &:hover{
+                  color: #ffb1bd;
+                }
+                &:not(:last-child){
+                  margin-right: 4px;
+                }
+              }
+            }
+          }
+
+          .friends-motto {
+            width: 100%;
+            font-weight: 400;
+            text-align: right;
+            font-size: 1.6rem;
+          }
+
+        }
+      }
+    }
+
+  }
+
+  @media screen and (max-width: 768px) {
+
+    .friends-section {
+      .friends-title{
+        font-size: 1.8rem;
+      }
+      .friends-ul{
+        .friends-li{
+
+          &:first-child{
+            margin-top: 0;
+          }
+
+          .friends-li-div {
+
+            .friends-pf-img {
+              width: 6rem;
+              height: 6rem;
+            }
+
+            .vertical-line-div {
+              .vertical-line {
+                display: inline-block;
+                height: 4rem;
+                margin-top: 1.5rem;
+                width: 1px;
+                background-color: #DADADA;
+                transition: all .2s ease;
+                -webkit-transition: all ease .2s;
+                -moz-transition: all ease .2s;
+                -ms-transition: all ease .2s;
+              }
+            }
+
+            .friends-info{
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+
+              .friends-info-name{
+                font-size: 1.6rem;
+              }
+              .friends-info-others{
+                overflow: hidden;
+                text-overflow:ellipsis;
+                white-space: nowrap;
+                span{
+                  font-size: 1.4rem;
+                  &:hover{
+                    color: #ffb1bd;
+                  }
+                }
+              }
+            }
+
+            .friends-motto {
+              font-size: 1.4rem;
+            }
+
+          }
+        }
+      }
+    }
+  }
+}
+</style>
